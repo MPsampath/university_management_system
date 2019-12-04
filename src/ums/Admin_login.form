@@ -35,8 +35,8 @@
               </Group>
               <EmptySpace pref="23" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="User_Admin" min="-2" pref="183" max="-2" attributes="0"/>
                   <Component id="Admin_Password" min="-2" pref="184" max="-2" attributes="0"/>
+                  <Component id="User_Admin" alignment="0" min="-2" pref="183" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
           </Group>

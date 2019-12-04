@@ -33,6 +33,7 @@ public class Lecterer_Login extends javax.swing.JFrame {
         Lecterer_Password = new javax.swing.JPasswordField();
         Lecterer_Button2 = new javax.swing.JButton();
         Lecterer_Button3 = new javax.swing.JButton();
+        Lecterers_lable1 = new javax.swing.JLabel();
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -63,6 +64,13 @@ public class Lecterer_Login extends javax.swing.JFrame {
             }
         });
 
+        Lecterers_lable1.setText("Create new account?");
+        Lecterers_lable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Lecterers_lable1MouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -79,11 +87,15 @@ public class Lecterer_Login extends javax.swing.JFrame {
                             .addComponent(Lecterer_Password, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(Lecterer_Id, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(155, 155, 155)
-                        .addComponent(Lecterer_Button2))
-                    .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(Lecterer_Button3)))
+                        .addComponent(Lecterer_Button3))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(155, 155, 155)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Lecterers_lable1)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(Lecterer_Button2)
+                                .addGap(24, 24, 24)))))
                 .addContainerGap(52, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -99,9 +111,11 @@ public class Lecterer_Login extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Lecterer_Password, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(Lecterer_Button2)
-                .addGap(20, 20, 20))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Lecterers_lable1)
+                .addGap(7, 7, 7))
         );
 
         pack();
@@ -120,6 +134,12 @@ public class Lecterer_Login extends javax.swing.JFrame {
     private void Lecterer_Button2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Lecterer_Button2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_Lecterer_Button2ActionPerformed
+
+    private void Lecterers_lable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Lecterers_lable1MouseClicked
+          Lecterers_form form = new Lecterers_form();
+          form.setVisible(true);
+          this.dispose();
+    }//GEN-LAST:event_Lecterers_lable1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -161,6 +181,7 @@ public class Lecterer_Login extends javax.swing.JFrame {
     private javax.swing.JButton Lecterer_Button3;
     private javax.swing.JTextField Lecterer_Id;
     private javax.swing.JPasswordField Lecterer_Password;
+    private javax.swing.JLabel Lecterers_lable1;
     private javax.swing.JColorChooser jColorChooser1;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
