@@ -3,10 +3,11 @@ package Lecterers;
 
 
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.sql.Statement;
 import javax.swing.JOptionPane;
 
 public class Lecterers_form extends javax.swing.JFrame {
@@ -51,6 +52,7 @@ public class Lecterers_form extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(0, 0, 0));
+        setBounds(new java.awt.Rectangle(0, 0, 0, 0));
 
         jLabel1.setText("User name");
 
@@ -88,12 +90,12 @@ public class Lecterers_form extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jButton2)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -102,7 +104,7 @@ public class Lecterers_form extends javax.swing.JFrame {
                 .addComponent(jButton2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(5, 5, 5))
+                .addGap(117, 117, 117))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -111,42 +113,41 @@ public class Lecterers_form extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(140, 140, 140)
-                        .addComponent(Submit_button1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel2))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Mobile_num, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Lecterer_pssword1, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(U_name, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(67, Short.MAX_VALUE))
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel2))
+                .addGap(26, 26, 26)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(Mobile_num, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Lecterer_pssword1, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(U_name, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(59, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(Submit_button1)
+                .addGap(128, 128, 128))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(U_name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(Lecterer_pssword1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(U_name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(Mobile_num, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(10, 10, 10)
+                    .addComponent(Lecterer_pssword1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Mobile_num, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
+                .addGap(18, 18, 18)
                 .addComponent(Submit_button1)
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -163,16 +164,57 @@ public class Lecterers_form extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void Submit_button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Submit_button1ActionPerformed
-                connecter c=new connecter();
-                con=(Connection) c.getConnection();
+               /* connecter c=new connecter();
+                con=(Connection) connecter.getConnection();*/
               String Lectere_User = U_name.getText();
               String Lecterer_Pass = Lecterer_pssword1.getText();
               String numb = Mobile_num.getText();
-              
-              
-              String query = "INSERT INTO `teachers`(`teacher_name`, `teacher_password`, `Contact_number`) VALUES (?,?,?)";
-      try{
+             
+            try{
+            connecter c=new connecter();
+            con=(Connection) connecter.getConnection();
+            Statement stat = con.createStatement();
+            
+            String selectQuery = "SELECT * FROM `teachers` WHERE  teacher_name='"+Lectere_User+"'";
+          ResultSet rs = stat.executeQuery(selectQuery);
           
+          if(rs.next()==true){
+              System.out.println("alredy"); 
+             JOptionPane.showMessageDialog(null,"already exists User name"); 
+          
+          }
+          else{
+              
+            String query = "INSERT INTO `teachers`(`teacher_name`, `teacher_password`, `Contact_number`) VALUES (?,?,?)";
+            PreparedStatement ps = con.prepareStatement(query);
+              ps.setString(1, Lectere_User);
+               ps.setString(2, Lecterer_Pass);
+                ps.setString(3, numb);
+           
+           
+              if(ps.executeUpdate()>0){
+                  
+             JOptionPane.showMessageDialog(null,"new user add");
+                Lecterer_Login login = new Lecterer_Login();
+                 login.setVisible(true);
+                    this.dispose();
+              }
+              
+          }
+            }catch(SQLException ex){
+                System.out.println("ex");
+            }
+              
+              
+         /*  Statment stat = con.createStatement();
+          String selectQuery = "SELECT  `teacher_name` FROM `teachers` WHERE Lectere_User='"++"'";
+          ResultSet rs = stat.executeQuery(selectQuery);
+          if(rs.next()){
+          
+          }else{
+          
+                  String query = "INSERT INTO `teachers`(`teacher_name`, `teacher_password`, `Contact_number`) VALUES (?,?,?)";
+      try{
           
             PreparedStatement ps = con.prepareStatement(query);
               ps.setString(1, Lectere_User);
@@ -187,13 +229,15 @@ public class Lecterers_form extends javax.swing.JFrame {
                  login.setVisible(true);
                     this.dispose();
                 }
-                 ps.execute();
       
                 con.close();
             }
       catch(SQLException ex){
       
           System.out.println("error"+ex);      }
+          }*/
+              
+      
     }//GEN-LAST:event_Submit_button1ActionPerformed
 
     private void U_nameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_U_nameActionPerformed

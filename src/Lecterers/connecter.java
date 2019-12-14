@@ -9,7 +9,7 @@ package Lecterers;
 import java.sql.*;
 
 
-public class connecter {
+           class connecter {
   private static final String USERNAME = "root";
   private static final String PASSWORD = "";
   private static final String CONN_STRING = "jdbc:mysql://localhost:3306/ums?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
@@ -25,7 +25,8 @@ public class connecter {
       System.err.println(e);
   }
   return con;
-//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
+// throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
    
