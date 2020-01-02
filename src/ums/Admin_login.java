@@ -1,7 +1,7 @@
 package ums;
 
 import javax.swing.*;
-
+import user.Admin;
 
 /**
  *
@@ -31,6 +31,7 @@ public class Admin_login extends javax.swing.JFrame {
         setTitle("University management system");
         setBackground(new java.awt.Color(0, 255, 102));
         setForeground(new java.awt.Color(255, 255, 255));
+        setResizable(false);
 
         jLabel1.setText("Admin");
 
@@ -91,7 +92,8 @@ public class Admin_login extends javax.swing.JFrame {
                 .addContainerGap(40, Short.MAX_VALUE))
         );
 
-        pack();
+        setSize(new java.awt.Dimension(331, 238));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void Admin_Button3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Admin_Button3ActionPerformed
@@ -101,22 +103,21 @@ public class Admin_login extends javax.swing.JFrame {
     }//GEN-LAST:event_Admin_Button3ActionPerformed
 
     private void Admin_Button2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Admin_Button2ActionPerformed
-String username = User_Admin.getText();
-String password = Admin_Password.getText();
-if(username.equals("admin") && password.equals("admin")){
-     Admin_Home adhome = new Admin_Home();
-        adhome.setVisible(true);
-        this.dispose();
-    User_Admin.setText(null);
-    Admin_Password.setText(null);
-}
-else{
-    JOptionPane.showMessageDialog(null,"incorect detail");
-    User_Admin.setText(null);
-    Admin_Password.setText(null);
+       
+        Admin adminImpl =  new Admin();
+        boolean test = adminImpl.adminLogin(this);
+        
+        if (test) {            
+        this.dispose();       
+            Admin_Home adhome = new Admin_Home();
+            adhome.setVisible(true);
+        }
+        
+           
+
     }//GEN-LAST:event_Admin_Button2ActionPerformed
 
-    }
+   
     public static void main(String[] args){
        
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -125,6 +126,23 @@ else{
             }
         });
     }
+
+    public JPasswordField getAdmin_Password() {
+        return Admin_Password;
+    }
+
+    public JTextField getUser_Admin() {
+        return User_Admin;
+    }
+
+    public void setAdmin_Password(String adminPassword) {
+        this.Admin_Password.setText(adminPassword);
+    }
+
+    public void setUser_Admin(String adminUserName) {
+        this.User_Admin.setText(adminUserName);
+    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Admin_Button2;

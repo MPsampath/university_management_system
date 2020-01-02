@@ -40,6 +40,7 @@ public class Admin_Home extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("University management system");
         setBackground(new java.awt.Color(0, 0, 0));
+        setResizable(false);
 
         jLabel2.setText("Student Dtails");
 
@@ -134,7 +135,8 @@ public class Admin_Home extends javax.swing.JFrame {
                 .addContainerGap(41, Short.MAX_VALUE))
         );
 
-        pack();
+        setSize(new java.awt.Dimension(411, 372));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     /**

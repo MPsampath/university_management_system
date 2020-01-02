@@ -5,10 +5,18 @@
  */
 package Students;
 
+import Lecterers.Lecterer_home;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import javax.swing.JOptionPane;
 import ums.Home_page;
 
 public class Student_Login extends javax.swing.JFrame {
 
+    Connection con;
     /**
      * Creates new form Student_Login
      */
@@ -27,19 +35,25 @@ public class Student_Login extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        Student_Password = new javax.swing.JTextField();
         Student_num = new javax.swing.JTextField();
         Student_Button2 = new javax.swing.JButton();
         Student_Button3 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
+        Student_Password = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         jLabel1.setText("Student Id");
 
         jLabel2.setText("Password");
 
         Student_Button2.setText("LOGIN");
+        Student_Button2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Student_Button2ActionPerformed(evt);
+            }
+        });
 
         Student_Button3.setText("Back");
         Student_Button3.addActionListener(new java.awt.event.ActionListener() {
@@ -71,8 +85,8 @@ public class Student_Login extends javax.swing.JFrame {
                             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 64, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(Student_Password)
-                            .addComponent(Student_num, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE))))
+                            .addComponent(Student_num, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
+                            .addComponent(Student_Password))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 140, Short.MAX_VALUE)
@@ -90,21 +104,24 @@ public class Student_Login extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(Student_Button3)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Student_num, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(1, 1, 1)
+                        .addComponent(Student_num)))
+                .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Student_Password, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(32, 32, 32)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
                 .addComponent(Student_Button2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel3)
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addGap(20, 20, 20))
         );
 
-        pack();
+        setSize(new java.awt.Dimension(373, 262));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void Student_Button3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Student_Button3ActionPerformed
@@ -120,6 +137,46 @@ public class Student_Login extends javax.swing.JFrame {
         this.dispose();
         
     }//GEN-LAST:event_jLabel3MouseClicked
+
+    private void Student_Button2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Student_Button2ActionPerformed
+              
+              String stu_id = Student_num.getText();
+              String stu_pass = Student_Password.getText();
+             
+              PreparedStatement ps;
+              ResultSet rs;
+              
+              String selectQuery = "SELECT * FROM `students_form` WHERE `student_id`=? AND`student_password`=? ";
+               try{
+             connecter c=new connecter();
+            con=(Connection) connecter.getConnection();
+            Statement stat = con.createStatement();
+            ps = con.prepareStatement(selectQuery);
+            ps.setString(1, stu_id);
+            ps.setString(2, stu_pass);
+            rs = ps.executeQuery();
+            
+            
+          
+          if(rs.next()){
+        
+             JOptionPane.showMessageDialog(null,"already exists User name"); 
+         
+             Student_home stuhome = new Student_home();
+             stuhome.setVisible(true);
+             this.dispose();
+         
+          }
+          else{
+              
+               JOptionPane.showMessageDialog(null,"no");
+     
+          }
+            }catch(SQLException ex){
+                System.out.println("ex");
+            }
+ 
+    }//GEN-LAST:event_Student_Button2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -159,7 +216,7 @@ public class Student_Login extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Student_Button2;
     private javax.swing.JButton Student_Button3;
-    private javax.swing.JTextField Student_Password;
+    private javax.swing.JPasswordField Student_Password;
     private javax.swing.JTextField Student_num;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
