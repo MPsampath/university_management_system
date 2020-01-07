@@ -5,21 +5,15 @@
  */
 package Students;
 
-import Lecterers.Lecterer_home;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import javax.swing.JOptionPane;
+
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
 import ums.Home_page;
+import user.Studentlogin;
 
 public class Student_Login extends javax.swing.JFrame {
 
-    Connection con;
-    /**
-     * Creates new form Student_Login
-     */
+  
     public Student_Login() {
         initComponents();
     }
@@ -140,42 +134,15 @@ public class Student_Login extends javax.swing.JFrame {
 
     private void Student_Button2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Student_Button2ActionPerformed
               
-              String stu_id = Student_num.getText();
-              String stu_pass = Student_Password.getText();
-             
-              PreparedStatement ps;
-              ResultSet rs;
-              
-              String selectQuery = "SELECT * FROM `students_form` WHERE `student_id`=? AND`student_password`=? ";
-               try{
-             connecter c=new connecter();
-            con=(Connection) connecter.getConnection();
-            Statement stat = con.createStatement();
-            ps = con.prepareStatement(selectQuery);
-            ps.setString(1, stu_id);
-            ps.setString(2, stu_pass);
-            rs = ps.executeQuery();
-            
-            
-          
-          if(rs.next()){
-        
-             JOptionPane.showMessageDialog(null,"already exists User name"); 
-         
-             Student_home stuhome = new Student_home();
+        Studentlogin stulogin = new Studentlogin();
+        boolean stutest1 = stulogin.studentlogin(this);
+                
+        if(stutest1){
+         Student_home stuhome = new Student_home();
              stuhome.setVisible(true);
              this.dispose();
-         
-          }
-          else{
-              
-               JOptionPane.showMessageDialog(null,"no");
-     
-          }
-            }catch(SQLException ex){
-                System.out.println("ex");
-            }
- 
+        }
+        
     }//GEN-LAST:event_Student_Button2ActionPerformed
 
     /**
@@ -211,6 +178,18 @@ public class Student_Login extends javax.swing.JFrame {
                 new Student_Login().setVisible(true);
             }
         });
+    }
+    public JTextField getStudent_num(){
+        return Student_num;
+    }
+    public JPasswordField getStudent_Password(){
+    return Student_Password;
+    }
+    public void setStudent_num(String studentnum){
+    this.Student_num.setText(studentnum);
+    }
+    public void setStudent_Password(String studentpass){
+    this.Student_Password.setText(studentpass);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

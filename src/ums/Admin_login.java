@@ -110,7 +110,7 @@ public class Admin_login extends javax.swing.JFrame {
         if (test) {            
         this.dispose();       
             Admin_Home adhome = new Admin_Home();
-            adhome.setVisible(true);
+            adhome.setVisible(true);    
         }
         
            

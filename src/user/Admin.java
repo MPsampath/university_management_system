@@ -1,7 +1,6 @@
 package user;
 
 import javax.swing.JOptionPane;
-import ums.Admin_Home;
 import ums.Admin_login;
 
 public class Admin {

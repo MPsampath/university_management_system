@@ -1,18 +1,15 @@
 
 package Lecterers;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import javax.swing.JOptionPane;
+
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
 import ums.Home_page;
 import user.Lectererlogin;
 
 public class Lecterer_Login extends javax.swing.JFrame {
 
- Connection con;
+ 
  
     public Lecterer_Login() {
         initComponents();
@@ -133,42 +130,14 @@ public class Lecterer_Login extends javax.swing.JFrame {
 
     private void Lecterer_Button2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Lecterer_Button2ActionPerformed
 
-              String lec_id = Lecterer_Id.getText();
-              String lec_pass = Lecterer_Password.getText();
-             
-              PreparedStatement ps;
-              ResultSet rs;
-              
-              String selectQuery = "SELECT * FROM `teachers` WHERE`teacher_name` =? AND`teacher_password` =? ";
-               try{
-            connecter c=new connecter();
-            con=(Connection) connecter.getConnection();
-            Statement stat = con.createStatement();
-            ps = con.prepareStatement(selectQuery);
-            ps.setString(1, lec_id);
-            ps.setString(2, lec_pass);
-            rs = ps.executeQuery();
-            
-            
-          
-          if(rs.next()){
-        
-             JOptionPane.showMessageDialog(null,"already exists User name"); 
-         
-             Lecterer_home lechome = new Lecterer_home();
+        Lectererlogin lecterlog = new Lectererlogin();
+        boolean lectest2 = lecterlog.leclogin(this); 
+ 
+        if(lectest2){
+        Lecterer_home lechome = new Lecterer_home();
              lechome.setVisible(true);
              this.dispose();
-         
-          }
-          else{
-              
-               JOptionPane.showMessageDialog(null,"no");
-     
-          }
-            }catch(SQLException ex){
-                System.out.println("ex");
-            }
- 
+        }
     }//GEN-LAST:event_Lecterer_Button2ActionPerformed
 
     private void Lecterers_lable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Lecterers_lable1MouseClicked
@@ -211,6 +180,22 @@ public class Lecterer_Login extends javax.swing.JFrame {
             }
         });
     }
+    public JTextField getLecterer_Id(){
+        return Lecterer_Id;
+    
+    }
+    public JPasswordField getLecterer_Password(){
+    
+        return Lecterer_Password;
+    }
+    public void setgetLecterer_Id(String lectereid) {
+        this.Lecterer_Id.setText(lectereid);
+    }
+
+    public void setLecterer_Password(String lectererpassword) {
+        this.Lecterer_Password.setText(lectererpassword);
+    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Lecterer_Button2;

@@ -5,13 +5,9 @@
  */
 package Students;
 
-import Lecterers.Lecterer_Login;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import javax.swing.JOptionPane;
+import user.Studentform;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
 
 
 /**
@@ -20,7 +16,7 @@ import javax.swing.JOptionPane;
  */
 public class Student_form extends javax.swing.JFrame {
 
-    Connection con;
+    
     /**
      * Creates new form Student_form
      */
@@ -169,50 +165,16 @@ public class Student_form extends javax.swing.JFrame {
 
     private void Student_Button5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Student_Button5ActionPerformed
 
-        String student_Id = Stu_Id.getText();
-        String student_Name = Stu_name.getText();
-        String student_Password = Stu_password.getText();
-        String student_Mobile = Stu_num.getText();
+        Studentform stuform = new Studentform();
+        boolean stutest1 = stuform.studentForm(this);
         
-         try{
-            connecter c=new connecter();
-            con=(Connection) connecter.getConnection();
-           Statement stat = con.createStatement();
+        if(stutest1){
             
-            String student_selectQuery = "SELECT * FROM `students_form` WHERE  student_id='"+student_Id+"'";
-          ResultSet rs = stat.executeQuery(student_selectQuery);
-          
-          if(rs.next()==true){
-              System.out.println("alredy"); 
-             JOptionPane.showMessageDialog(null,"already exists User name"); 
-             
-          
-          }
-          else{
-              
-            String student_query = "INSERT INTO `students_form`(`student_id`, `student_name`, `student_password`, `student_mobile`) VALUES (?,?,?,?)";
-            PreparedStatement ps = con.prepareStatement(student_query);
-              ps.setString(1, student_Id);
-               ps.setString(2, student_Name);
-                ps.setString(3, student_Password);
-                ps.setString(4, student_Mobile);
-            
-           
-              if(ps.executeUpdate()>0){
-                 
-                  
-             JOptionPane.showMessageDialog(null,"new user add");
-                Student_Login login = new Student_Login();
+         Student_Login login = new Student_Login();
                  login.setVisible(true);
                     this.dispose();
-              }
-              
-              }
-            }catch(SQLException ex){
-                System.out.println(ex);
-            }
-           
-        
+        }
+         
     }//GEN-LAST:event_Student_Button5ActionPerformed
 
     private void Stu_IdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Stu_IdActionPerformed
@@ -253,7 +215,30 @@ public class Student_form extends javax.swing.JFrame {
             }
         });
     }
-
+    public JTextField getStu_Id(){
+    return Stu_Id;
+    }
+    public JTextField getStu_name(){
+    return Stu_name;
+    }
+    public JTextField getStu_num(){
+    return Stu_num;
+    }
+    public JPasswordField getStu_password(){
+    return Stu_password;
+    }
+    public void setStu_Id(String stuid){
+    this.Stu_Id.setText(stuid);
+    }
+    public void setStu_name(String stuname){
+    this.Stu_name.setText(stuname);
+    }
+    public void setStu_num(String stunum){
+    this.Stu_num.setText(stunum);
+    }
+    public void setStu_password(String stupassword){
+    this.Stu_password.setText(stupassword);
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField Stu_Id;
     private javax.swing.JTextField Stu_name;

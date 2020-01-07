@@ -3,18 +3,14 @@ package Lecterers;
 
 
 import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+import user.Lectererform;
 
 
 public class Lecterers_form extends javax.swing.JFrame {
      Connection con;
+    
      
      
 //      private static final String USERNAME = "root";
@@ -164,47 +160,15 @@ public class Lecterers_form extends javax.swing.JFrame {
 
     private void Submit_button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Submit_button1ActionPerformed
                
-              String Lectere_User = U_name.getText();
-              String Lecterer_Pass = Lecterer_pssword1.getText();
-              String numb = Mobile_num.getText();
-             
-            try{
-            connecter c=new connecter();
-            con=(Connection) connecter.getConnection();
-            Statement stat = con.createStatement();
-            
-            String selectQuery = "SELECT * FROM `teachers` WHERE  teacher_name='"+Lectere_User+"'";
-          ResultSet rs = stat.executeQuery(selectQuery);
-          
-          if(rs.next()==true){
-        
-             JOptionPane.showMessageDialog(null,"already exists User name"); 
-          
-          }
-          else{
-              
-            String query = "INSERT INTO `teachers`(`teacher_name`, `teacher_password`, `Contact_number`) VALUES (?,?,?)";
-            PreparedStatement ps = con.prepareStatement(query);
-              ps.setString(1, Lectere_User);
-               ps.setString(2, Lecterer_Pass);
-                ps.setString(3, numb);
-           
-           
-              if(ps.executeUpdate()>0){
-                  
-             JOptionPane.showMessageDialog(null,"new user add");
+        Lectererform leclog = new Lectererform();
+        boolean test2 = leclog.adminLogin(this);
+         
+        if(test2){
                 Lecterer_Login login = new Lecterer_Login();
-                 login.setVisible(true);
-                    this.dispose();
-              }
-              
-          }
-            }catch(SQLException ex){
-                System.out.println("ex");
-            }
-              
-              
-  
+                login.setVisible(true);
+                this.dispose();
+       
+        }
       
     }//GEN-LAST:event_Submit_button1ActionPerformed
 
